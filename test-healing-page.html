@@ -72,7 +72,7 @@
         <h1>Healenium Self-Healing Test Page</h1>
         <p>This page is used to demonstrate Healenium's self-healing capabilities.</p>
 
-        <!-- ORIGINAL VERSION - Use this for first successful run -->
+        <!-- ORIGINAL VERSION - COMMENTED OUT FOR HEALING TEST
         <div id="original-elements">
             <h2>Test Form (Original IDs)</h2>
             <input type="text" id="username" placeholder="Enter username">
@@ -81,8 +81,9 @@
             <button id="cancelBtn">Cancel</button>
             <div class="result" id="resultMessage">Form submitted successfully!</div>
         </div>
+        -->
 
-        <!-- MODIFIED VERSION - Uncomment this after first successful test run
+        <!-- MODIFIED VERSION - ACTIVE - Healenium should heal these! -->
         <div id="modified-elements">
             <h2>Test Form (Modified IDs - Healenium should find these!)</h2>
             <input type="text" id="user-name-input" placeholder="Enter username">
@@ -91,36 +92,25 @@
             <button id="cancel-button-new">Cancel</button>
             <div class="result" id="result-msg-new">Form submitted successfully!</div>
         </div>
-        -->
     </div>
 
     <script>
-        // Original version event handlers
-        const originalSubmit = document.getElementById('submitBtn');
-        const originalCancel = document.getElementById('cancelBtn');
-        const originalResult = document.getElementById('resultMessage');
-
-        if (originalSubmit) {
-            originalSubmit.addEventListener('click', function() {
-                originalResult.style.display = 'block';
-                originalResult.textContent = 'Original button clicked - Form submitted!';
-            });
-        }
-
-        if (originalCancel) {
-            originalCancel.addEventListener('click', function() {
-                document.getElementById('username').value = '';
-                document.getElementById('password').value = '';
-            });
-        }
-
-        // Modified version event handlers (when uncommented)
+        // Modified version event handlers
         const modifiedSubmit = document.getElementById('submit-button-new');
+        const modifiedCancel = document.getElementById('cancel-button-new');
+        const modifiedResult = document.getElementById('result-msg-new');
+
         if (modifiedSubmit) {
             modifiedSubmit.addEventListener('click', function() {
-                const resultDiv = document.getElementById('result-msg-new');
-                resultDiv.style.display = 'block';
-                resultDiv.textContent = 'Modified button clicked - Healenium healed the locator!';
+                modifiedResult.style.display = 'block';
+                modifiedResult.textContent = 'Modified button clicked - Healenium healed the locator!';
+            });
+        }
+
+        if (modifiedCancel) {
+            modifiedCancel.addEventListener('click', function() {
+                document.getElementById('user-name-input').value = '';
+                document.getElementById('pass-word-input').value = '';
             });
         }
     </script>
