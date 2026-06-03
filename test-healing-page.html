@@ -60,52 +60,58 @@
 <body>
     <div class="container">
         <div class="instruction">
-            <strong>⚠️ ELEMENT TYPE CHANGE TEST - Testing Healenium's Limitations!</strong>
-            <p><strong>What Changed:</strong></p>
+            <strong>🔥 ULTIMATE TEST - IDs + Element Types BOTH Changed!</strong>
+            <p><strong>This is the HARDEST test for Healenium:</strong></p>
             <ul>
-                <li>✅ IDs STAYED THE SAME: id="username", id="password", id="submitBtn"</li>
-                <li>❌ Element TYPES CHANGED:</li>
+                <li>❌ IDs CHANGED:</li>
                 <ul>
-                    <li>&lt;button id="submitBtn"&gt; → &lt;a id="submitBtn"&gt; (Link)</li>
-                    <li>&lt;input id="username"&gt; → &lt;textarea id="username"&gt; (Textarea)</li>
+                    <li>id="username" → id="user-name-input"</li>
+                    <li>id="password" → id="pass-word-input"</li>
+                    <li>id="submitBtn" → id="submit-button-new"</li>
+                    <li>id="resultMessage" → id="result-msg-new"</li>
+                </ul>
+                <li>❌ Element TYPES ALSO CHANGED:</li>
+                <ul>
+                    <li>&lt;button id="submitBtn"&gt; → &lt;a id="submit-button-new"&gt;</li>
+                    <li>&lt;input id="username"&gt; → &lt;textarea id="user-name-input"&gt;</li>
                 </ul>
             </ul>
-            <p><strong>Expected Result:</strong> Healenium will likely FAIL or show LOW confidence (&lt;50%) because element tags changed!</p>
+            <p><strong>Expected Result:</strong> Healenium will need to heal BOTH challenges at once! Will it work?</p>
         </div>
 
         <h1>Healenium Self-Healing Test Page</h1>
         <p>This page is used to demonstrate Healenium's self-healing capabilities.</p>
 
-        <!-- ELEMENT TYPE CHANGED - Testing Healenium's Limits! -->
-        <div id="type-changed-elements">
-            <h2>Test Form (Element TYPES Changed - IDs Same!)</h2>
-            <textarea id="username" placeholder="Enter username" rows="1" style="width: 300px; padding: 10px; font-size: 14px; border: 2px solid #ddd; border-radius: 4px; margin: 10px 5px; font-family: Arial;"></textarea>
-            <textarea id="password" placeholder="Enter password" rows="1" style="width: 300px; padding: 10px; font-size: 14px; border: 2px solid #ddd; border-radius: 4px; margin: 10px 5px; font-family: Arial;"></textarea>
-            <a href="javascript:void(0);" id="submitBtn" style="background: #3498db; color: white; padding: 15px 30px; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 10px 5px; display: inline-block; text-decoration: none;">Submit Form</a>
-            <a href="javascript:void(0);" id="cancelBtn" style="background: #3498db; color: white; padding: 15px 30px; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 10px 5px; display: inline-block; text-decoration: none;">Cancel</a>
-            <div class="result" id="resultMessage">⚠️ Element types changed! Can Healenium find them?</div>
+        <!-- ULTIMATE TEST: IDs AND Types Changed! -->
+        <div id="ultimate-test-elements">
+            <h2>Test Form (IDs + Types BOTH Changed!)</h2>
+            <textarea id="user-name-input" placeholder="Enter username" rows="1" style="width: 300px; padding: 10px; font-size: 14px; border: 2px solid #ddd; border-radius: 4px; margin: 10px 5px; font-family: Arial;"></textarea>
+            <textarea id="pass-word-input" placeholder="Enter password" rows="1" style="width: 300px; padding: 10px; font-size: 14px; border: 2px solid #ddd; border-radius: 4px; margin: 10px 5px; font-family: Arial;"></textarea>
+            <a href="javascript:void(0);" id="submit-button-new" style="background: #3498db; color: white; padding: 15px 30px; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 10px 5px; display: inline-block; text-decoration: none;">Submit Form</a>
+            <a href="javascript:void(0);" id="cancel-button-new" style="background: #3498db; color: white; padding: 15px 30px; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 10px 5px; display: inline-block; text-decoration: none;">Cancel</a>
+            <div class="result" id="result-msg-new">🔥 ULTIMATE TEST: Both IDs and Types changed!</div>
         </div>
     </div>
 
     <script>
-        // Event handlers for element type changes
-        const submitLink = document.getElementById('submitBtn');
-        const cancelLink = document.getElementById('cancelBtn');
-        const resultDiv = document.getElementById('resultMessage');
+        // Event handlers for ultimate test (IDs + Types changed)
+        const submitLink = document.getElementById('submit-button-new');
+        const cancelLink = document.getElementById('cancel-button-new');
+        const resultDiv = document.getElementById('result-msg-new');
 
         if (submitLink) {
             submitLink.addEventListener('click', function(e) {
                 e.preventDefault();
                 resultDiv.style.display = 'block';
-                resultDiv.textContent = '⚠️ If you see this, Healenium found the LINK element (was button)!';
+                resultDiv.textContent = '🔥 If you see this, Healenium found LINK with NEW ID (was button with OLD ID)!';
             });
         }
 
         if (cancelLink) {
             cancelLink.addEventListener('click', function(e) {
                 e.preventDefault();
-                document.getElementById('username').value = '';
-                document.getElementById('password').value = '';
+                document.getElementById('user-name-input').value = '';
+                document.getElementById('pass-word-input').value = '';
             });
         }
     </script>
