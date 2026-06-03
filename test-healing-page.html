@@ -60,46 +60,52 @@
 <body>
     <div class="container">
         <div class="instruction">
-            <strong>Instructions for Testing Healenium:</strong>
-            <ol>
-                <li>Run the test with this page first (elements have original IDs)</li>
-                <li>After successful run, uncomment the "MODIFIED VERSION" section below</li>
-                <li>Comment out the "ORIGINAL VERSION" section</li>
-                <li>Run test again - Healenium should heal the broken locators!</li>
-            </ol>
+            <strong>⚠️ ELEMENT TYPE CHANGE TEST - Testing Healenium's Limitations!</strong>
+            <p><strong>What Changed:</strong></p>
+            <ul>
+                <li>✅ IDs STAYED THE SAME: id="username", id="password", id="submitBtn"</li>
+                <li>❌ Element TYPES CHANGED:</li>
+                <ul>
+                    <li>&lt;button id="submitBtn"&gt; → &lt;a id="submitBtn"&gt; (Link)</li>
+                    <li>&lt;input id="username"&gt; → &lt;textarea id="username"&gt; (Textarea)</li>
+                </ul>
+            </ul>
+            <p><strong>Expected Result:</strong> Healenium will likely FAIL or show LOW confidence (&lt;50%) because element tags changed!</p>
         </div>
 
         <h1>Healenium Self-Healing Test Page</h1>
         <p>This page is used to demonstrate Healenium's self-healing capabilities.</p>
 
-        <!-- MODIFIED VERSION - Healenium will heal the locators! -->
-        <div id="modified-elements">
-            <h2>Test Form (Modified IDs - Healenium Healing in Action!)</h2>
-            <input type="text" id="user-name-input" placeholder="Enter username">
-            <input type="password" id="pass-word-input" placeholder="Enter password">
-            <button id="submit-button-new">Submit Form</button>
-            <button id="cancel-button-new">Cancel</button>
-            <div class="result" id="result-msg-new">🎉 HEALENIUM HEALED THE LOCATOR! 🎉</div>
+        <!-- ELEMENT TYPE CHANGED - Testing Healenium's Limits! -->
+        <div id="type-changed-elements">
+            <h2>Test Form (Element TYPES Changed - IDs Same!)</h2>
+            <textarea id="username" placeholder="Enter username" rows="1" style="width: 300px; padding: 10px; font-size: 14px; border: 2px solid #ddd; border-radius: 4px; margin: 10px 5px; font-family: Arial;"></textarea>
+            <textarea id="password" placeholder="Enter password" rows="1" style="width: 300px; padding: 10px; font-size: 14px; border: 2px solid #ddd; border-radius: 4px; margin: 10px 5px; font-family: Arial;"></textarea>
+            <a href="javascript:void(0);" id="submitBtn" style="background: #3498db; color: white; padding: 15px 30px; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 10px 5px; display: inline-block; text-decoration: none;">Submit Form</a>
+            <a href="javascript:void(0);" id="cancelBtn" style="background: #3498db; color: white; padding: 15px 30px; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 10px 5px; display: inline-block; text-decoration: none;">Cancel</a>
+            <div class="result" id="resultMessage">⚠️ Element types changed! Can Healenium find them?</div>
         </div>
     </div>
 
     <script>
-        // Modified version event handlers
-        const modifiedSubmit = document.getElementById('submit-button-new');
-        const modifiedCancel = document.getElementById('cancel-button-new');
-        const modifiedResult = document.getElementById('result-msg-new');
+        // Event handlers for element type changes
+        const submitLink = document.getElementById('submitBtn');
+        const cancelLink = document.getElementById('cancelBtn');
+        const resultDiv = document.getElementById('resultMessage');
 
-        if (modifiedSubmit) {
-            modifiedSubmit.addEventListener('click', function() {
-                modifiedResult.style.display = 'block';
-                modifiedResult.textContent = '🎉 HEALENIUM HEALED THE LOCATOR! 🎉';
+        if (submitLink) {
+            submitLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                resultDiv.style.display = 'block';
+                resultDiv.textContent = '⚠️ If you see this, Healenium found the LINK element (was button)!';
             });
         }
 
-        if (modifiedCancel) {
-            modifiedCancel.addEventListener('click', function() {
-                document.getElementById('user-name-input').value = '';
-                document.getElementById('pass-word-input').value = '';
+        if (cancelLink) {
+            cancelLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
             });
         }
     </script>
