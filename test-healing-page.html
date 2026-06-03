@@ -72,7 +72,7 @@
         <h1>Healenium Self-Healing Test Page</h1>
         <p>This page is used to demonstrate Healenium's self-healing capabilities.</p>
 
-        <!-- ORIGINAL VERSION - COMMENTED OUT FOR HEALING TEST
+        <!-- ORIGINAL VERSION - ACTIVE FOR FIRST RUN -->
         <div id="original-elements">
             <h2>Test Form (Original IDs)</h2>
             <input type="text" id="username" placeholder="Enter username">
@@ -81,36 +81,25 @@
             <button id="cancelBtn">Cancel</button>
             <div class="result" id="resultMessage">Form submitted successfully!</div>
         </div>
-        -->
-
-        <!-- MODIFIED VERSION - ACTIVE - Healenium should heal these! -->
-        <div id="modified-elements">
-            <h2>Test Form (Modified IDs - Healenium should find these!)</h2>
-            <input type="text" id="user-name-input" placeholder="Enter username">
-            <input type="password" id="pass-word-input" placeholder="Enter password">
-            <button id="submit-button-new">Submit Form</button>
-            <button id="cancel-button-new">Cancel</button>
-            <div class="result" id="result-msg-new">Form submitted successfully!</div>
-        </div>
     </div>
 
     <script>
-        // Modified version event handlers
-        const modifiedSubmit = document.getElementById('submit-button-new');
-        const modifiedCancel = document.getElementById('cancel-button-new');
-        const modifiedResult = document.getElementById('result-msg-new');
+        // Original version event handlers
+        const originalSubmit = document.getElementById('submitBtn');
+        const originalCancel = document.getElementById('cancelBtn');
+        const originalResult = document.getElementById('resultMessage');
 
-        if (modifiedSubmit) {
-            modifiedSubmit.addEventListener('click', function() {
-                modifiedResult.style.display = 'block';
-                modifiedResult.textContent = 'Modified button clicked - Healenium healed the locator!';
+        if (originalSubmit) {
+            originalSubmit.addEventListener('click', function() {
+                originalResult.style.display = 'block';
+                originalResult.textContent = 'Form submitted successfully!';
             });
         }
 
-        if (modifiedCancel) {
-            modifiedCancel.addEventListener('click', function() {
-                document.getElementById('user-name-input').value = '';
-                document.getElementById('pass-word-input').value = '';
+        if (originalCancel) {
+            originalCancel.addEventListener('click', function() {
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
             });
         }
     </script>
