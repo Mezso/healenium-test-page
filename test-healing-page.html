@@ -65,16 +65,16 @@
             <ul>
                 <li>❌ ALL IDs CHANGED:</li>
                 <ul>
-                    <li>id="username" → data-field="user-input"</li>
-                    <li>id="password" → data-field="pass-input"</li>
-                    <li>id="submitBtn" → data-action="form-submit"</li>
+                    <li>id="username" → id="user-name-input"</li>
+                    <li>id="password" → id="pass-word-input"</li>
+                    <li>id="submitBtn" → id="submit-button-new"</li>
                     <li>id="cancelBtn" → data-action="form-reset"</li>
-                    <li>id="resultMessage" → data-result="output"</li>
+                    <li>id="resultMessage" → id="result-msg-new"</li>
                 </ul>
                 <li>❌ Element TYPES CHANGED:</li>
                 <ul>
-                    <li>&lt;textarea&gt; → &lt;input type="text"&gt;</li>
-                    <li>&lt;a href&gt; → &lt;button&gt;</li>
+                    <li>&lt;input type="text"&gt; → &lt;textarea&gt;</li>
+                    <li>&lt;button&gt; → &lt;a href&gt;</li>
                     <li>&lt;span&gt; → &lt;div&gt;</li>
                 </ul>
                 <li>❌ Parent container changed: "type-change-test-elements" → "form-wrapper-container"</li>
@@ -88,25 +88,25 @@
         <!-- COMPLETELY CHANGED: All Element Types, IDs, and Structure Changed! -->
         <div class="form-wrapper-container">
             <h2>Test Form (Everything Changed!)</h2>
-            <input type="text" id="username" data-field="user-input" class="text-field" placeholder="Enter username" style="width: 300px; padding: 10px; font-size: 14px; border: 2px solid #ddd; border-radius: 4px; margin: 10px 5px; font-family: Arial;" />
-            <input type="text" id="password" data-field="pass-input" class="text-field" placeholder="Enter password" style="width: 300px; padding: 10px; font-size: 14px; border: 2px solid #ddd; border-radius: 4px; margin: 10px 5px; font-family: Arial;" />
-            <button type="button" id="submitBtn" data-action="form-submit" class="action-button" style="background: #3498db; color: white; padding: 15px 30px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 10px 5px;">Submit Form</button>
+            <textarea id="user-name-input" data-field="user-input" class="text-field" placeholder="Enter username" style="width: 300px; padding: 10px; font-size: 14px; border: 2px solid #ddd; border-radius: 4px; margin: 10px 5px; font-family: Arial; resize: vertical; min-height: 40px;"></textarea>
+            <textarea id="pass-word-input" data-field="pass-input" class="text-field" placeholder="Enter password" style="width: 300px; padding: 10px; font-size: 14px; border: 2px solid #ddd; border-radius: 4px; margin: 10px 5px; font-family: Arial; resize: vertical; min-height: 40px;"></textarea>
+            <a href="#" id="submit-button-new" data-action="form-submit" class="action-button" style="background: #3498db; color: white; padding: 15px 30px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 10px 5px; display: inline-block; text-decoration: none;">Submit Form</a>
             <button type="button" data-action="form-reset" class="action-button" style="background: #3498db; color: white; padding: 15px 30px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 10px 5px;">Cancel</button>
-            <div class="message-box" id="resultMessage" data-result="output" style="display: none; margin-top: 20px; padding: 15px; background: #e8f5e9; border-left: 4px solid #4caf50;">🔄 All elements completely changed!</div>
+            <div class="message-box" id="result-msg-new" data-result="output" style="display: none; margin-top: 20px; padding: 15px; background: #e8f5e9; border-left: 4px solid #4caf50;">🔄 All elements completely changed!</div>
         </div>
     </div>
 
     <script>
         // Event handlers for completely changed elements (new data attributes, element types)
-        const submitButton = document.getElementById('submitBtn');
+        const submitButton = document.getElementById('submit-button-new');
         const cancelButton = document.querySelector('[data-action="form-reset"]');
-        const resultBox = document.getElementById('resultMessage');
+        const resultBox = document.getElementById('result-msg-new');
 
         if (submitButton) {
             submitButton.addEventListener('click', function(e) {
                 e.preventDefault();
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
+                const username = document.getElementById('user-name-input').value;
+                const password = document.getElementById('pass-word-input').value;
                 
                 if (username && password) {
                     resultBox.style.display = 'block';
@@ -129,8 +129,8 @@
         if (cancelButton) {
             cancelButton.addEventListener('click', function(e) {
                 e.preventDefault();
-                document.getElementById('username').value = '';
-                document.getElementById('password').value = '';
+                document.getElementById('user-name-input').value = '';
+                document.getElementById('pass-word-input').value = '';
                 resultBox.style.display = 'none';
             });
         }
