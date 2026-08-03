@@ -60,72 +60,78 @@
 <body>
     <div class="container">
         <div class="instruction">
-            <strong>� ELEMENT TYPE CHANGE TEST - Same IDs, Different Elements!</strong>
-            <p><strong>Testing Healenium's Structure Healing:</strong></p>
+            <strong>🔄 COMPLETE STRUCTURE CHANGE TEST - All Locators Changed!</strong>
+            <p><strong>Testing Healenium's Advanced Healing with C# XPath:</strong></p>
             <ul>
-                <li>✅ IDs STAY THE SAME: username, password, submitBtn, cancelBtn, resultMessage</li>
+                <li>❌ ALL IDs CHANGED:</li>
+                <ul>
+                    <li>id="username" → data-field="user-input"</li>
+                    <li>id="password" → data-field="pass-input"</li>
+                    <li>id="submitBtn" → data-action="form-submit"</li>
+                    <li>id="cancelBtn" → data-action="form-reset"</li>
+                    <li>id="resultMessage" → data-result="output"</li>
+                </ul>
                 <li>❌ Element TYPES CHANGED:</li>
                 <ul>
-                    <li>&lt;input id="username"&gt; → &lt;textarea id="username"&gt; (Text input to Textarea)</li>
-                    <li>&lt;input id="password"&gt; → &lt;textarea id="password"&gt; (Password input to Textarea)</li>
-                    <li>&lt;button id="submitBtn"&gt; → &lt;a id="submitBtn"&gt; (Button to Link)</li>
-                    <li>&lt;button id="cancelBtn"&gt; → &lt;a id="cancelBtn"&gt; (Button to Link)</li>
-                    <li>&lt;div id="resultMessage"&gt; → &lt;span id="resultMessage"&gt; (Div to Span)</li>
+                    <li>&lt;textarea&gt; → &lt;input type="text"&gt;</li>
+                    <li>&lt;a href&gt; → &lt;button&gt;</li>
+                    <li>&lt;span&gt; → &lt;div&gt;</li>
                 </ul>
+                <li>❌ Parent container changed: "type-change-test-elements" → "form-wrapper-container"</li>
             </ul>
-            <p><strong>Expected Result:</strong> Healenium should heal successfully because IDs match, testing if it can handle different DOM structure with same semantic purpose.</p>
+            <p><strong>Expected Result:</strong> Healenium should heal successfully based on semantic similarity, position, and text content, proving robust self-healing with C# XPath locators.</p>
         </div>
 
         <h1>Healenium Self-Healing Test Page</h1>
         <p>This page is used to demonstrate Healenium's self-healing capabilities.</p>
 
-        <!-- ELEMENT TYPE CHANGED: Same IDs, Different Element Types -->
-        <div id="type-change-test-elements">
-            <h2>Test Form (Element Types Changed, IDs Same!)</h2>
-            <textarea id="username" placeholder="Enter username" rows="1" style="width: 300px; padding: 10px; font-size: 14px; border: 2px solid #ddd; border-radius: 4px; margin: 10px 5px; font-family: Arial;"></textarea>
-            <textarea id="password" placeholder="Enter password" rows="1" style="width: 300px; padding: 10px; font-size: 14px; border: 2px solid #ddd; border-radius: 4px; margin: 10px 5px; font-family: Arial;"></textarea>
-            <a href="javascript:void(0);" id="submitBtn" style="background: #3498db; color: white; padding: 15px 30px; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 10px 5px; display: inline-block; text-decoration: none;">Submit Form</a>
-            <a href="javascript:void(0);" id="cancelBtn" style="background: #3498db; color: white; padding: 15px 30px; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 10px 5px; display: inline-block; text-decoration: none;">Cancel</a>
-            <span class="result" id="resultMessage" style="display: none;">🔄 Element types changed but IDs stayed the same!</span>
+        <!-- COMPLETELY CHANGED: All Element Types, IDs, and Structure Changed! -->
+        <div class="form-wrapper-container">
+            <h2>Test Form (Everything Changed!)</h2>
+            <input type="text" data-field="user-input" class="text-field" placeholder="Enter username" style="width: 300px; padding: 10px; font-size: 14px; border: 2px solid #ddd; border-radius: 4px; margin: 10px 5px; font-family: Arial;" />
+            <input type="text" data-field="pass-input" class="text-field" placeholder="Enter password" style="width: 300px; padding: 10px; font-size: 14px; border: 2px solid #ddd; border-radius: 4px; margin: 10px 5px; font-family: Arial;" />
+            <button type="button" data-action="form-submit" class="action-button" style="background: #3498db; color: white; padding: 15px 30px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 10px 5px;">Submit Form</button>
+            <button type="button" data-action="form-reset" class="action-button" style="background: #3498db; color: white; padding: 15px 30px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin: 10px 5px;">Cancel</button>
+            <div class="message-box" data-result="output" style="display: none; margin-top: 20px; padding: 15px; background: #e8f5e9; border-left: 4px solid #4caf50;">🔄 All elements completely changed!</div>
         </div>
     </div>
 
     <script>
-        // Event handlers for type-changed elements (IDs stayed the same)
-        const submitLink = document.getElementById('submitBtn');
-        const cancelLink = document.getElementById('cancelBtn');
-        const resultDiv = document.getElementById('resultMessage');
+        // Event handlers for completely changed elements (new data attributes, element types)
+        const submitButton = document.querySelector('[data-action="form-submit"]');
+        const cancelButton = document.querySelector('[data-action="form-reset"]');
+        const resultBox = document.querySelector('[data-result="output"]');
 
-        if (submitLink) {
-            submitLink.addEventListener('click', function(e) {
+        if (submitButton) {
+            submitButton.addEventListener('click', function(e) {
                 e.preventDefault();
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
+                const username = document.querySelector('[data-field="user-input"]').value;
+                const password = document.querySelector('[data-field="pass-input"]').value;
                 
                 if (username && password) {
-                    resultDiv.style.display = 'inline-block';
-                    resultDiv.textContent = '🔄 Success! Healenium found the LINK (was button) with same ID "submitBtn"! Welcome, ' + username + '!';
-                    resultDiv.style.background = '#e8f5e9';
-                    resultDiv.style.borderLeft = '4px solid #4caf50';
-                    resultDiv.style.padding = '15px';
-                    resultDiv.style.marginTop = '20px';
+                    resultBox.style.display = 'block';
+                    resultBox.textContent = '🔄 Success! Healenium healed the locators completely! Welcome, ' + username + '!';
+                    resultBox.style.background = '#e8f5e9';
+                    resultBox.style.borderLeft = '4px solid #4caf50';
+                    resultBox.style.padding = '15px';
+                    resultBox.style.marginTop = '20px';
                 } else {
-                    resultDiv.style.display = 'inline-block';
-                    resultDiv.textContent = 'Please fill in both fields!';
-                    resultDiv.style.background = '#ffebee';
-                    resultDiv.style.borderLeft = '4px solid #f44336';
-                    resultDiv.style.padding = '15px';
-                    resultDiv.style.marginTop = '20px';
+                    resultBox.style.display = 'block';
+                    resultBox.textContent = 'Please fill in both fields!';
+                    resultBox.style.background = '#ffebee';
+                    resultBox.style.borderLeft = '4px solid #f44336';
+                    resultBox.style.padding = '15px';
+                    resultBox.style.marginTop = '20px';
                 }
             });
         }
 
-        if (cancelLink) {
-            cancelLink.addEventListener('click', function(e) {
+        if (cancelButton) {
+            cancelButton.addEventListener('click', function(e) {
                 e.preventDefault();
-                document.getElementById('username').value = '';
-                document.getElementById('password').value = '';
-                resultDiv.style.display = 'none';
+                document.querySelector('[data-field="user-input"]').value = '';
+                document.querySelector('[data-field="pass-input"]').value = '';
+                resultBox.style.display = 'none';
             });
         }
     </script>
