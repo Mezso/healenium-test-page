@@ -230,7 +230,7 @@
 
     <div class="slds-page-container">
         <!-- Notification Area -->
-        <div id="resultMessage" class="slds-notify"></div>
+        <div id="resultMessage_modified" class="slds-notify"></div>
 
         <!-- Page Header -->
         <div class="slds-page-header">
@@ -254,7 +254,7 @@
                 <form class="slds-form" onsubmit="return false;">
                     <div class="slds-form-element">
                         <label class="slds-form-element__label required" for="accountName">Account Name</label>
-                        <input type="text" id="accountName" class="slds-input" placeholder="Enter account name" />
+                        <input type="text" id="accountName_modified" class="slds-input" placeholder="Enter account name" />
                     </div>
                     <div class="slds-form-element">
                         <label class="slds-form-element__label" for="accountNumber">Account Number</label>
@@ -262,7 +262,7 @@
                     </div>
                     <div class="slds-form-element">
                         <label class="slds-form-element__label" for="accountType">Type</label>
-                        <select id="accountType" class="slds-select">
+                        <select id="accountType_modified" class="slds-select">
                             <option value="">--None--</option>
                             <option value="prospect">Prospect</option>
                             <option value="customer">Customer - Direct</option>
@@ -272,7 +272,7 @@
                     </div>
                     <div class="slds-form-element">
                         <label class="slds-form-element__label" for="industry">Industry</label>
-                        <select id="industry" class="slds-select">
+                        <select id="industry_modified" class="slds-select">
                             <option value="">--None--</option>
                             <option value="technology">Technology</option>
                             <option value="finance">Finance</option>
@@ -282,7 +282,7 @@
                     </div>
                     <div class="slds-form-element">
                         <label class="slds-form-element__label" for="phone">Phone</label>
-                        <input type="text" id="phone" class="slds-input" placeholder="(555) 555-5555" />
+                        <input type="text" id="phone_modified" class="slds-input" placeholder="(555) 555-5555" />
                     </div>
                     <div class="slds-form-element">
                         <label class="slds-form-element__label" for="website">Website</label>
@@ -345,7 +345,7 @@
         <!-- Action Buttons -->
         <div class="slds-card">
             <div class="slds-button-group">
-                <button type="button" id="submitBtn" class="slds-button slds-button--brand" onclick="handleSave()">Save</button>
+                <button type="button" id="submitBtn_modified" class="slds-button slds-button--brand" onclick="handleSave()">Save</button>
                 <button type="button" id="saveNewBtn" class="slds-button" onclick="handleSaveAndNew()">Save & New</button>
                 <button type="button" id="cancelBtn" class="slds-button" onclick="handleCancel()">Cancel</button>
             </div>
@@ -354,8 +354,8 @@
 
     <script>
         function handleSave() {
-            const accountName = document.getElementById('accountName').value.trim();
-            const resultBox = document.getElementById('resultMessage');
+            const accountName = document.getElementById('accountName_modified').value.trim();
+            const resultBox = document.getElementById('resultMessage_modified');
             
             if (!accountName) {
                 showNotification('error', '⚠️ Error: Please complete the required fields.');
@@ -366,13 +366,13 @@
             console.log('Account created:', {
                 accountName: accountName,
                 accountNumber: document.getElementById('accountNumber').value,
-                type: document.getElementById('accountType').value,
-                industry: document.getElementById('industry').value
+                type: document.getElementById('accountType_modified').value,
+                industry: document.getElementById('industry_modified').value
             });
         }
 
         function handleSaveAndNew() {
-            const accountName = document.getElementById('accountName').value.trim();
+            const accountName = document.getElementById('accountName_modified').value.trim();
             
             if (!accountName) {
                 showNotification('error', '⚠️ Error: Please complete the required fields.');
@@ -391,11 +391,11 @@
         }
 
         function clearForm() {
-            document.getElementById('accountName').value = '';
+            document.getElementById('accountName_modified').value = '';
             document.getElementById('accountNumber').value = '';
-            document.getElementById('accountType').value = '';
-            document.getElementById('industry').value = '';
-            document.getElementById('phone').value = '';
+            document.getElementById('accountType_modified').value = '';
+            document.getElementById('industry_modified').value = '';
+            document.getElementById('phone_modified').value = '';
             document.getElementById('website').value = '';
             document.getElementById('billingStreet').value = '';
             document.getElementById('shippingStreet').value = '';
@@ -408,7 +408,7 @@
         }
 
         function showNotification(type, message) {
-            const resultBox = document.getElementById('resultMessage');
+            const resultBox = document.getElementById('resultMessage_modified');
             resultBox.className = 'slds-notify slds-notify--' + type;
             resultBox.textContent = message;
             resultBox.style.display = 'block';
@@ -421,11 +421,11 @@
         // Console logging for testing
         console.log('Salesforce-style Healenium Test Page Loaded');
         console.log('Available form elements:', {
-            accountName: !!document.getElementById('accountName'),
-            accountType: !!document.getElementById('accountType'),
-            industry: !!document.getElementById('industry'),
-            phone: !!document.getElementById('phone'),
-            submitBtn: !!document.getElementById('submitBtn'),
+            accountName: !!document.getElementById('accountName_modified'),
+            accountType: !!document.getElementById('accountType_modified'),
+            industry: !!document.getElementById('industry_modified'),
+            phone: !!document.getElementById('phone_modified'),
+            submitBtn: !!document.getElementById('submitBtn_modified'),
             cancelBtn: !!document.getElementById('cancelBtn')
         });
     </script>
