@@ -230,7 +230,7 @@
 
     <div class="slds-page-container">
         <!-- Notification Area -->
-        <div id="resultMessage_modified" class="slds-notify"></div>
+        <div id="resultMessage" class="slds-notify"></div>
 
         <!-- Page Header -->
         <div class="slds-page-header">
@@ -254,7 +254,7 @@
                 <form class="slds-form" onsubmit="return false;">
                     <div class="slds-form-element">
                         <label class="slds-form-element__label required" for="accountName">Account Name</label>
-                        <input type="text" id="accountName_modified" class="slds-input" placeholder="Enter account name" />
+                        <input type="text" id="accountName" class="slds-input" placeholder="Enter account name" />
                     </div>
                     <div class="slds-form-element">
                         <label class="slds-form-element__label" for="accountNumber">Account Number</label>
@@ -262,7 +262,7 @@
                     </div>
                     <div class="slds-form-element">
                         <label class="slds-form-element__label" for="accountType">Type</label>
-                        <select id="accountType_modified" class="slds-select">
+                        <select id="accountType" class="slds-select">
                             <option value="">--None--</option>
                             <option value="prospect">Prospect</option>
                             <option value="customer">Customer - Direct</option>
@@ -272,7 +272,7 @@
                     </div>
                     <div class="slds-form-element">
                         <label class="slds-form-element__label" for="industry">Industry</label>
-                        <select id="industry_modified" class="slds-select">
+                        <select id="industry" class="slds-select">
                             <option value="">--None--</option>
                             <option value="technology">Technology</option>
                             <option value="finance">Finance</option>
@@ -282,11 +282,155 @@
                     </div>
                     <div class="slds-form-element">
                         <label class="slds-form-element__label" for="phone">Phone</label>
-                        <input type="text" id="phone_modified" class="slds-input" placeholder="(555) 555-5555" />
+                        <input type="text" id="phone" class="slds-input" placeholder="(555) 555-5555" />
                     </div>
                     <div class="slds-form-element">
                         <label class="slds-form-element__label" for="website">Website</label>
                         <input type="text" id="website" class="slds-input" placeholder="www.example.com" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Address Information Section -->
+        <div class="slds-card">
+            <div class="slds-card__header">Address Information</div>
+            <div class="slds-card__body">
+                <form class="slds-form" onsubmit="return false;">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="billingStreet">Billing Street</label>
+                        <textarea id="billingStreet" class="slds-textarea" placeholder="Enter billing street address"></textarea>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="shippingStreet">Shipping Street</label>
+                        <textarea id="shippingStreet" class="slds-textarea" placeholder="Enter shipping street address"></textarea>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="billingCity">Billing City</label>
+                        <input type="text" id="billingCity" class="slds-input" placeholder="City" />
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="shippingCity">Shipping City</label>
+                        <input type="text" id="shippingCity" class="slds-input" placeholder="City" />
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="billingState">Billing State/Province</label>
+                        <input type="text" id="billingState" class="slds-input" placeholder="State" />
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="shippingState">Shipping State/Province</label>
+                        <input type="text" id="shippingState" class="slds-input" placeholder="State" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Additional Information Section -->
+        <div class="slds-card">
+            <div class="slds-card__header">Additional Information</div>
+            <div class="slds-card__body">
+                <form class="slds-form" onsubmit="return false;">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="description">Description</label>
+                        <textarea id="description" class="slds-textarea" placeholder="Enter description"></textarea>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="employees">Employees</label>
+                        <input type="number" id="employees" class="slds-input" placeholder="Number of employees" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="slds-card">
+            <div class="slds-button-group">
+                <button type="button" id="submitBtn" class="slds-button slds-button--brand" onclick="handleSave()">Save</button>
+                <button type="button" id="saveNewBtn" class="slds-button" onclick="handleSaveAndNew()">Save & New</button>
+                <button type="button" id="cancelBtn" class="slds-button" onclick="handleCancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleSave() {
+            const accountName = document.getElementById('accountName').value.trim();
+            const resultBox = document.getElementById('resultMessage');
+            
+            if (!accountName) {
+                showNotification('error', '⚠️ Error: Please complete the required fields.');
+                return;
+            }
+            
+            showNotification('success', '✓ Success: Account "' + accountName + '" was created successfully.');
+            console.log('Account created:', {
+                accountName: accountName,
+                accountNumber: document.getElementById('accountNumber').value,
+                type: document.getElementById('accountType').value,
+                industry: document.getElementById('industry').value
+            });
+        }
+
+        function handleSaveAndNew() {
+            const accountName = document.getElementById('accountName').value.trim();
+            
+            if (!accountName) {
+                showNotification('error', '⚠️ Error: Please complete the required fields.');
+                return;
+            }
+            
+            showNotification('success', '✓ Success: Account "' + accountName + '" was created. Ready for new account.');
+            setTimeout(clearForm, 1500);
+        }
+
+        function handleCancel() {
+            if (confirm('Are you sure you want to cancel? Any unsaved changes will be lost.')) {
+                clearForm();
+                showNotification('success', 'Operation cancelled.');
+            }
+        }
+
+        function clearForm() {
+            document.getElementById('accountName').value = '';
+            document.getElementById('accountNumber').value = '';
+            document.getElementById('accountType').value = '';
+            document.getElementById('industry').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('website').value = '';
+            document.getElementById('billingStreet').value = '';
+            document.getElementById('shippingStreet').value = '';
+            document.getElementById('billingCity').value = '';
+            document.getElementById('shippingCity').value = '';
+            document.getElementById('billingState').value = '';
+            document.getElementById('shippingState').value = '';
+            document.getElementById('description').value = '';
+            document.getElementById('employees').value = '';
+        }
+
+        function showNotification(type, message) {
+            const resultBox = document.getElementById('resultMessage');
+            resultBox.className = 'slds-notify slds-notify--' + type;
+            resultBox.textContent = message;
+            resultBox.style.display = 'block';
+            
+            setTimeout(function() {
+                resultBox.style.display = 'none';
+            }, 5000);
+        }
+
+        // Console logging for testing
+        console.log('Salesforce-style Healenium Test Page Loaded');
+        console.log('Available form elements:', {
+            accountName: !!document.getElementById('accountName'),
+            accountType: !!document.getElementById('accountType'),
+            industry: !!document.getElementById('industry'),
+            phone: !!document.getElementById('phone'),
+            submitBtn: !!document.getElementById('submitBtn'),
+            cancelBtn: !!document.getElementById('cancelBtn')
+        });
+    </script>
+</body>
+</html>" class="slds-input" placeholder="www.example.com" />
                     </div>
                 </form>
             </div>
